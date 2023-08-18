@@ -3,7 +3,7 @@ const {User}= require('../models/user.js');
 const Joi=require('joi');
 const bcrypt=require('bcrypt')
 
-
+//login page
 router.post("/",async(req,res)=>{
     try{
         const{error}=validate(req.body);
@@ -21,6 +21,7 @@ router.post("/",async(req,res)=>{
         {
             return res.status(401).send({message:"Invalid Email or Password"});
         }
+        //if password is correct
         const token = user.generateAuthToken();
         res.status(200).send({data:token,message:"Logged in successfully"})
 
@@ -39,3 +40,5 @@ const validate=(data)=>{
     });
     return schema.validate(data);
 }
+
+module.exports= router;
