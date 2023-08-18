@@ -6,7 +6,7 @@ const bcrypt=require('bcrypt')
 //login page
 router.post("/",async(req,res)=>{
     try{
-        const{error}=validate(req.body);
+        const {error}=validate(req.body);
         if(error)
         {
             return res.status(400).send({message:error.details[0].message});
@@ -36,7 +36,7 @@ router.post("/",async(req,res)=>{
 const validate=(data)=>{
     const schema = Joi.object({
         email:Joi.string().email().required().label("Email"),
-        password:Joi.string().email().required().label("Password")
+        password:Joi.string().required().label("Password")
     });
     return schema.validate(data);
 }
